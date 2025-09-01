@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Resources\Post;
+namespace App\Http\Resources\Chat;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PostResource extends JsonResource
+class ChatResource extends JsonResource
 {
-
     /**
      * Transform the resource into an array.
      *
@@ -18,15 +17,9 @@ class PostResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'body' => $this->body,
-            'likes' => $this->likes,
-            'is_published' => $this->is_published,
-            'published_at' => $this->published_at,
-            'profile_id' => $this->profile_id,
-            'category_id' => $this->category_id,
+            'status' => $this->status,
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'updated_at' => $this->updated_at
         ];
     }
-
 }

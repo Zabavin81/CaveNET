@@ -24,7 +24,6 @@ class FollowerController extends Controller
 //    {
 //        $follower = Follower::create([
 //            "title" => Str::random(16),
-//            "status" => Str::random(16)
 //        ]);
 //        return $follower;
 //
