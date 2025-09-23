@@ -20,22 +20,13 @@ return new class extends Migration {
             $table->id();
             $table->text('body');
 
-            $table->unsignedBigInteger('parent_message_id')->nullable();
-            $table->unsignedBigInteger('post_id')->nullable();
-            $table->unsignedBigInteger('profile_id')->nullable(); //->nullable() лишний;
-            $table->unsignedBigInteger('chat_id')->nullable(); //->nullable() лишний;
+            $table->foreignId('parent_id')->nullable()->index()->constrained('messages');
+            $table->foreignId('post_id')->index()->constrained('posts');
+            $table->foreignId('chat_id')->index()->constrained('chats');
+            $table->softDeletes();
 
-            $table->foreign('post_id','messages_post_id_fk')->references('id')->on('posts');
-            $table->foreign('profile_id','messages_profile_id_fk')->references('id')->on('profiles')->cascadeOnDelete();
-            $table->foreign('chat_id','messages_chat_id_fk')->references('id')->on('chats')->cascadeOnDelete();
-            $table->foreign('parent_message_id','messages_parent_fk')->references('id')->on('messages')->cascadeOnDelete();
 
             $table->timestamps();
-
-            $table->index('post_id','messages_post_id_index');
-            $table->index('profile_id','messages_profile_id_index');
-            $table->index('chat_id','messages_chat_id_index');
-            $table->index('parent_message_id','messages_parent_message_id_index');
         });
     }
 

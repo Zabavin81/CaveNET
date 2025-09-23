@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PostTag extends Model
+class Video extends Model
 {
-    //
 }

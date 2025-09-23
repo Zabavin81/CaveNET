@@ -19,21 +19,11 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->text('body');
-
-            $table->unsignedBigInteger('parent_id')->nullable()->nullable(); //->nullable() лишний;
-            $table->unsignedBigInteger('post_id')->nullable(); //->nullable() лишний;
-            $table->unsignedBigInteger('likes')->default(0)->nullable(); //->nullable() лишний;
-            $table->unsignedBigInteger('profile_id')->nullable(); //->nullable() лишний;
-
-            $table->foreign('post_id','comments_post_fk')->on('posts')->references('id')->cascadeOnDelete();
-            $table->foreign('profile_id','comments_profile_fk')->on('profiles')->references('id')->cascadeOnDelete();
-            $table->foreign('parent_id','comments_parent_fk')->references('id')->on('comments')->cascadeOnDelete();
-
+            $table->foreignId('parent_id')->nullable()->index()->constrained('comments')->cascadeOnDelete();
+            $table->morphs('commentable');
+            $table->foreignId('profile_id')->index()->constrained('profiles');
+            $table->softDeletes();
             $table->timestamps();
-
-            $table->index('parent_id','comments_parent_id_index');
-            $table->index('post_id','comments_post_id_index');
-            $table->index('profile_id','comments_profile_id_index');
         });
     }
 
@@ -44,4 +34,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('comments');
     }
+
 };

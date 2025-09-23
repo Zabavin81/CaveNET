@@ -26,15 +26,12 @@ return new class extends Migration
             $table->unsignedInteger('likes')->default(0);
             $table->boolean('is_published')->default(false);
             $table->dateTime('published_at')->nullable();
+            $table->unsignedInteger('views')->default(0);
 
-            $table->unsignedBigInteger('profile_id')->nullable(); //->nullable() лишний;
-            $table->unsignedBigInteger('category_id')->nullable();
+            $table->foreignId('profile_id')->index()->constrained('profiles');
+            $table->foreignId('category_id')->index()->constrained('categories');
+            $table->softDeletes();
 
-            $table->index('profile_id', 'post_profile_id_index');
-            $table->index('category_id', 'post_category_id_index');
-
-            $table->foreign('profile_id', 'post_profile_fk')->on('profiles')->references('id')->cascadeOnDelete();
-            $table->foreign('category_id', 'post_category_fk')->on('categories')->references('id')->cascadeOnDelete();
 
             $table->timestamps();
         });

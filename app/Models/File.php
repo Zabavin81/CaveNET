@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Role extends Model
+class File extends Model
 {
-    use SoftDeletes;
-
     protected $guarded = [];
+
+    public function fileable()
+    {
+        return $this->morphTo();
+    }
 }

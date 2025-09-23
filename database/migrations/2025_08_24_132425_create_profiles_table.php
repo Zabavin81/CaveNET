@@ -27,13 +27,11 @@ return new class extends Migration
             $table->date('date_of_birth');
             $table->string('marital_status')->nullable();
             $table->string('avatar')->nullable();
+            $table->foreignId('user_id')->index()->constrained('users');
+            $table->softDeletes();
 
             $table->timestamps();
 
-            $table->unsignedBigInteger('user_id')->nullable(); //->nullable() лишний
-
-            $table->index('user_id','profile_user_id_index');
-            $table->foreign('user_id','profile_user_id_fk')->references('id')->on('users')->cascadeOnDelete();
 
         });
     }

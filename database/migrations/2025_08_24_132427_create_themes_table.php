@@ -15,14 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-
-            $table->unsignedBigInteger('group_id')->nullable(); //->nullable() лишний;
+            $table->foreignId('group_id')->index()->constrained('groups');
+            $table->softDeletes();
 
             $table->timestamps();
-
-            $table->index('group_id', 'themes_group_id_index');
-
-            $table->foreign('group_id', 'themes_group_id_fk')->references('id')->on('groups')->cascadeOnDelete();
         });
     }
 

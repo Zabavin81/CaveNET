@@ -21,6 +21,9 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('avatar')->nullable();
+            $table->foreignId('profile_id')->constrained('profiles');
+            $table->softDeletes();
+
             $table->timestamps();
         });
     }

@@ -13,16 +13,13 @@ return new class extends Migration
     {
         Schema::create('group_profiles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('group_id')->nullable(); //->nullable() лишний;
-            $table->unsignedBigInteger('profile_id')->nullable(); //->nullable() лишний;
+            $table->foreignId('group_id')->index()->constrained('groups');
+            $table->foreignId('profile_id')->index()->constrained('profiles');
             $table->string('role');
+            $table->softDeletes();
+
             $table->timestamps();
             $table->unique(['group_id', 'profile_id']);
-
-            $table->index('group_id','group_profiles_group_id_index');
-            $table->index('profile_id','group_profiles_profile_id_index');
-            $table->foreign('group_id', 'group_profiles_group_id_fk')->references('id')->on('groups')->cascadeOnDelete();
-            $table->foreign('profile_id', 'group_profiles_profile_id_fk')->references('id')->on('profiles')->cascadeOnDelete();
         });
     }
 

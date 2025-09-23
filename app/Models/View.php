@@ -3,21 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Tag extends Model
+class View extends Model
 {
     use SoftDeletes;
 
     protected $guarded = [];
 
-    public function posts() : HasMany
+    public function viewedPost()
     {
-        return $this->hasMany(Post::class);
+        return $this->morphedByMany(Post::class, 'viewable');
     }
 
-    public function taggable()
+    public function viewable()
     {
         return $this->morphTo();
     }

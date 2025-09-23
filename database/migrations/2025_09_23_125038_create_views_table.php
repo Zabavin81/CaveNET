@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('followers', function (Blueprint $table) {
+        Schema::create('views', function (Blueprint $table) {
             $table->id();
+            $table->morphs('viewable');
+            $table->foreignId('profile_id')->nullable()->index()->constrained('profiles')->cascadeOnDelete();
             $table->softDeletes();
-
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('followers');
+        Schema::dropIfExists('views');
     }
 };

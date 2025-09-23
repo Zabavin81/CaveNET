@@ -15,19 +15,15 @@ return new class extends Migration
             $table->id();
             $table->text('content');
 
-            $table->unsignedBigInteger('profile_id')->nullable(); //->nullable() лишний;
-            $table->unsignedBigInteger('post_id')->nullable(); //->nullable() лишний;
-
+            $table->foreignId('profile_id')->index()->constrained('profiles');
+            $table->foreignId('post_id')->index()->constrained('posts');
 
             $table->unique(['profile_id','post_id']);
+            $table->softDeletes();
 
-            $table->foreign('profile_id','reposts_profile_id_fk')->references('id')->on('profiles')->cascadeOnDelete();
-            $table->foreign('post_id','reposts_post_id_fk')->references('id')->on('posts')->cascadeOnDelete();
 
             $table->timestamps();
 
-            $table->index('post_id','reposts_post_id_index');
-            $table->index('profile_id','reposts_profile_id_index');
         });
     }
 

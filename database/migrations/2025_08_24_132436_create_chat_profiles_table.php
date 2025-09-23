@@ -14,20 +14,14 @@ return new class extends Migration
         Schema::create('chat_profiles', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('chat_id')->nullable(); //->nullable() лишний;
-            $table->unsignedBigInteger('profile_id')->nullable(); //->nullable() лишний;
+            $table->foreignId('chat_id')->index()->constrained('groups');
+            $table->foreignId('profile_id')->index()->constrained('profiles');
+            $table->softDeletes();
 
-            $table->string('role');
 
             $table->unique(['chat_id', 'profile_id']);
 
             $table->timestamps();
-
-            $table->foreign('chat_id', 'chat_profiles_chat_id_fk')->references('id')->on('chats')->onDelete('cascade');
-            $table->foreign('profile_id', 'chat_profiles_profile_id_fk')->references('id')->on('profiles')->cascadeOnDelete();
-
-            $table->index('chat_id','chat_profiles_chat_id_index');
-            $table->index('profile_id','chat_profiles_profile_id_index');
         });
     }
 
