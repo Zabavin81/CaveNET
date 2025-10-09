@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\FollowerController;
@@ -11,8 +12,21 @@ use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\TagController;
 use App\Http\Controllers\Api\ThemeController;
+use App\Http\Middleware\IsAdminMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+Route::post('auth/login', [AuthController::class, 'login']);
+Route::group(['middleware' => 'jwt.auth', 'prefix' => 'auth',],
+    function ($router) {
+        Route::post('logout', [AuthController::class, 'logout']);
+        Route::post('refresh', [AuthController::class, 'refresh']);
+        Route::post('me', [AuthController::class, 'me']);
+    });
+
+Route::group(['middleware' => ['jwt.auth',IsAdminMiddleware::class]], function ($router) {
+    Route::apiResource('/posts', PostController::class);
+});
 
 Route::apiResource('/chats', ChatController::class);
 Route::apiResource('/comments', CommentController::class);
@@ -20,7 +34,6 @@ Route::apiResource('/followers', FollowerController::class);
 Route::apiResource('/groups', GroupController::class);
 Route::apiResource('/likes', LikeController::class);
 Route::apiResource('/messages', MessageController::class);
-Route::apiResource('/posts', PostController::class);
 Route::apiResource('/profiles', ProfileController::class);
 Route::apiResource('/roles', RoleController::class);
 Route::apiResource('/tags', TagController::class);

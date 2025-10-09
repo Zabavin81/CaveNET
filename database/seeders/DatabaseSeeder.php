@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
         $user = User::firstOrCreate(
             ["email" => 'user@user.com'],
             ["name" => "user",
-            "password" => Hash::make('123123123'),
-            "role" =>  "user"]
+            "password" => Hash::make('123123123')]
+            //"role" =>  "user"]
         );
         $user->profile()->updateOrCreate(
             ['username' =>"user"],
