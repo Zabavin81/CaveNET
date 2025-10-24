@@ -7,11 +7,11 @@ use App\Http\Resources\Category\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
+class CategoryController extends Controller
 {
     public function index(){
         $categories = Category::all();
         $categories = CategoryResource::collection($categories)->resolve();
-        return inertia('Client/Category/Index', compact('categories'));
+        return inertia("Client/Category/Index", compact("categories"));
     }
 }

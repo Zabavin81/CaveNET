@@ -1,12 +1,18 @@
+<template>
+
+</template>
+
 <script>
 export default {
-name: "Index"
+  name: "Index",
+  props: {
+    categories:{
+      type: Array,
+      required: false,
+    },
+  }
 }
 </script>
-
-<template>
-  $END$
-</template>
 
 <style scoped>
 

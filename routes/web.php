@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Client\CategoryController;
+use App\Http\Controllers\Client\GroupController;
 use App\Http\Controllers\Client\PostController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Client\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -9,13 +11,9 @@ use Inertia\Inertia;
 
 
 Route::get('/posts',[PostController::class,'index']);
-
-
-
-
-
-
-
+Route::get('/groups',[GroupController::class,'index']);
+Route::get('/profiles',[ProfileController::class,'index']);
+Route::get('/categories',[CategoryController::class,'index']);
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
