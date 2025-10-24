@@ -2,63 +2,62 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Profile;
+use App\Http\Requests\ProfileUpdateRequest;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class ProfileController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the user's profile form.
      */
-    public function index()
+    public function edit(Request $request): Response
     {
-        return Profile::all();
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $profile = Profile::create([
-            "username" => Str::random(16),
-            "name" => Str::random(16),
-            "gender" => Str::random(16)
+        return Inertia::render('Profile/Edit', [
+            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+            'status' => session('status'),
         ]);
-        return $profile;
-
     }
 
     /**
-     * Display the specified resource.
+     * Update the user's profile information.
      */
-    public function show(Profile  $profile)
+    public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        return $profile;
+        $request->user()->fill($request->validated());
+
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
+        }
+
+        $request->user()->save();
+
+        return Redirect::route('profile.edit');
     }
 
     /**
-     * Update the specified resource in storage.
+     * Delete the user's account.
      */
-    public function update(Profile $profile)
+    public function destroy(Request $request): RedirectResponse
     {
-        dump($profile);
-        $profile->update([
-            "title" => Str::random(16),
-            "status" => Str::random(16)
+        $request->validate([
+            'password' => ['required', 'current_password'],
         ]);
-        return $profile;
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Profile $profile)
-    {
-        $profile->delete();
-        return response(['message' => 'Profile deleted'], Response::HTTP_OK);
+        $user = $request->user();
+
+        Auth::logout();
+
+        $user->delete();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return Redirect::to('/');
     }
 }
-
