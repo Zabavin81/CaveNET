@@ -27,7 +27,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Get the authenticated User.
+     * Get the authenticated Profile.
      *
      * @return \Illuminate\Http\JsonResponse
      */
