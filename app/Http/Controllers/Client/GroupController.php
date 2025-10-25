@@ -12,6 +12,6 @@ class GroupController extends Controller
     public function index(){
         $groups = Group::all();
         $groups = GroupResource::collection($groups)->resolve();
-        return view('Client/Group/index', compact('groups'));
+        return inertia('Client/Group/Index', compact('groups'));
     }
 }
