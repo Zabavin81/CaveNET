@@ -1,82 +1,46 @@
 <template>
-    <div class="bg-gray-900 py-24 sm:py-32">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <div class="mx-auto max-w-2xl lg:mx-0">
-                <h2 class="text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl">
-                    Все посты
-                </h2>
-                <p class="mt-2 text-lg/8 text-gray-300">Laravel + Vue</p>
-            </div>
+    <div>
+        <table class="divide-gray-200 dark:divide-gray-700 ">
+            <thead>
+            <tr class="*:font-medium *:text-gray-900 dark:*:text-white ">
+                <th class="px-3 py-2">ID</th>
+                <th class="px-3 py-2">TITLE</th>
+                <th class="px-3 py-2">BODY</th>
+                <th class="px-3 py-2">ACTION</th>
+            </tr>
+            </thead>
 
-            <div
-                class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-700 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3"
-            >
-                <div v-for="post in posts" :key="post.id">
-                    <article class="flex max-w-xl flex-col items-start justify-between">
-                        <div class="flex items-center gap-x-4 text-xs">
-                            <time class="text-gray-400">
-                                {{ post.published_at }}
-                            </time>
-
-                            <a
-                                href="#"
-                                class="relative z-10 rounded-full bg-gray-800/60 px-3 py-1.5 font-medium text-gray-300 hover:bg-gray-800"
-                            >
-                                {{post.category}}
-                            </a>
-                        </div>
-
-                        <div class="group relative grow">
-                            <h3 class="mt-3 text-lg/6 font-semibold text-white group-hover:text-gray-300">
-                                <a href="#">
-                                    <span class="absolute inset-0"></span>
-                                    {{ post.title }}
-                                </a>
-                            </h3>
-                            <p class="mt-5 line-clamp-3 text-sm/6 text-gray-400">
-                                {{ post.body }}
-                            </p>
-                        </div>
-
-                        <div class="relative mt-8 flex items-center gap-x-4 justify-self-end">
-                            <img
-                                src="https://cdn.vectorstock.com/i/500p/00/65/user-profile-grey-icon-web-avatar-employee-vector-32550065.jpg"
-                                alt="Avatar"
-                                class="size-10 rounded-full bg-gray-800"
-                            />
-                            <div class="text-sm/6">
-                                <p class="font-semibold text-white">
-                                    <a href="#"><span class="absolute inset-0"></span>{{post.author}}</a>
-                                </p>
-                            </div>
-
-                            <div class="flex items-center gap-x-2 text-xs">
-                                <a
-                                    href="#"
-                                    class="inline-flex items-center gap-x-1.5 relative z-10 rounded-full bg-gray-800/60 px-3 py-1.5 font-medium text-gray-300 hover:bg-gray-800"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/>
-                                    </svg>
-                                    {{ post.likes }}
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </div>
+            <tbody v-for="post in posts" class="divide-y divide-gray-200 dark:divide-gray-700">
+            <tr class="*:text-gray-900 *:first:font-medium dark:*:text-white">
+                <td class="px-3 py-2">{{post.id}}</td>
+                <td class="px-3 py-2">{{post.title}}</td>
+                <td class="px-3 py-2">{{post.body}}</td>
+                <td class="px-3 py-2 text-center">
+                    <div class ="inline-flex cursor-pointer">
+                        <Link :href="route('admin.posts.show',post.id)">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        </svg>
+                        </Link>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
 <script>
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+import { Link } from '@inertiajs/vue3';
 
 export default {
     name: 'Index',
-    layout:AdminLayout,
+    layout: AdminLayout,
+    components: {
+        Link
+    },
     props: {
         posts: {
             type: Array,

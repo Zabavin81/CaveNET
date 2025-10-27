@@ -1,6 +1,6 @@
 <template>
 
-    <section class = "w-full bg-white dark:bg-gray-950 flex justify-end">
+    <section class = "fixed w-full flex bg-gray-950 justify-end z-50">
         <header class="w-5/6">
             <div class="mx-auto flex h-16 max-w-7xl items-center gap-8 px-4 sm:px-6 lg:px-8 p-4">
                 <a class="block text-teal-600 dark:text-teal-300" href="#">
@@ -71,24 +71,34 @@
             </div>
         </header>
     </section>
-    <section class = "flex">
-        <aside class = "w-1/6 p-4 flex-col bg-gray-800">
+    <section class="min-h-screen">
+        <aside
+            class="fixed left-0 top-16 bottom-0 w-1/6 p-4 bg-gray-800 text-white overflow-y-auto z-10"
+        >
+            <div>
+                <DropdownLink :href="route('admin.dashboard')" class = "text-teal-600 border-b ">Dashboard</DropdownLink>
+                <DropdownLink :href="route('admin.posts.index')" class = "text-teal-600 border-b">Posts</DropdownLink>
+            </div>
         </aside>
 
-        <article class = "w-5/6 p-4">
+        <article class="w-5/6 ml-[16.6667%] pt-16 p-4">
             <slot />
         </article>
     </section>
 
     <section>
         <footer>
-
         </footer>
     </section>
 </template>
 <script>
+
+import { Link } from '@inertiajs/vue3'
+import NavLink from '@/Components/NavLink.vue';
+import DropdownLink from '@/Components/DropdownLink.vue';
 export default {
     name: 'AdminLayout',
+    components: { DropdownLink, NavLink },
 };
 </script>
 

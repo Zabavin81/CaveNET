@@ -9,8 +9,7 @@
             </div>
 
             <div
-                class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-700 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3"
-            >
+                class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-700 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                 <div v-for="post in posts" :key="post.id">
                     <article class="flex max-w-xl flex-col items-start justify-between">
                         <div class="flex items-center gap-x-4 text-xs">

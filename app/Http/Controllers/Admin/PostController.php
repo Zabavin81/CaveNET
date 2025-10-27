@@ -14,4 +14,9 @@ class PostController extends Controller
         $posts = PostResource::collection($posts)->resolve();
         return inertia('Admin/Post/Index',compact('posts'));
     }
+
+    public function show(Post $post){
+        $post = PostResource::make($post)->resolve();
+        return inertia('Admin/Post/Show',compact('post'));
+    }
 }

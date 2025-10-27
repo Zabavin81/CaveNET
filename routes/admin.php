@@ -11,8 +11,9 @@ use Inertia\Inertia;
 
 
 Route::group(['prefix'=> 'admin'], function () {
-    Route::get('/posts',[PostController::class,'index']);
-    Route::get('/dashboard',[DashboardController::class,'index']);
+    Route::get('/posts',[PostController::class,'index'])->name('admin.posts.index');
+    Route::get('/dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
+    Route::get('/posts/{post}',[PostController::class,'show'])->name('admin.posts.show');
 });
 
 
