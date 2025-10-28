@@ -78,6 +78,9 @@
             <div>
                 <DropdownLink :href="route('admin.dashboard')" class = "text-teal-600 border-b ">Dashboard</DropdownLink>
                 <DropdownLink :href="route('admin.posts.index')" class = "text-teal-600 border-b">Posts</DropdownLink>
+                <DropdownLink :href="route('admin.categories.index')" class = "text-teal-600 border-b">Categories</DropdownLink>
+                <DropdownLink :href="route('admin.profiles.index')" class = "text-teal-600 border-b">Profiles</DropdownLink>
+                <DropdownLink :href="route('admin.groups.index')" class = "text-teal-600 border-b">Groups</DropdownLink>
             </div>
         </aside>
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class GroupResource extends JsonResource
 {
+
     /**
      * Transform the resource into an array.
      *
@@ -15,10 +16,11 @@ class GroupResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-"id" => $this -> id,
-"title" => $this -> title,
-"description" => $this -> description,
-"avatar" => $this -> avatar,
+            "id" => $this->id,
+            "title" => $this->title,
+            "description" => $this->description,
+            "avatar" => $this->avatar,
         ];
     }
+
 }
