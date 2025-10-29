@@ -101,7 +101,7 @@ import NavLink from '@/Components/NavLink.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 export default {
     name: 'AdminLayout',
-    components: { DropdownLink, NavLink },
+    components: { DropdownLink, NavLink,Link},
 };
 </script>
 

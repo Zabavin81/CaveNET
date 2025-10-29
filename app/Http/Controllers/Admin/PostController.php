@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Post\StoreRequest;
 use App\Http\Resources\Post\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -18,5 +19,17 @@ class PostController extends Controller
     public function show(Post $post){
         $post = PostResource::make($post)->resolve();
         return inertia('Admin/Post/Show',compact('post'));
+    }
+
+    public function create(){
+        return inertia('Admin/Post/Create');
+    }
+
+    public function store(StoreRequest $request){
+        $data = $request->validated();
+        $data['category_id'] = 1;
+        $data['profile_id'] = 1;
+        $post = Post::create($data);
+        return PostResource::make($post)->resolve();
     }
 }

@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
-Route::group(['prefix'=> 'admin'], function () {
+Route::group(['prefix'=> 'admin', 'middleware'=> ['auth',\App\Http\Middleware\IsAdminMiddleware::class]], function () {
     Route::get('/posts',[PostController::class,'index'])->name('admin.posts.index');
+    Route::get('/posts/create',[PostController::class,'create'])->name('admin.posts.create');
     Route::get('/posts/{post}',[PostController::class,'show'])->name('admin.posts.show');
+    Route::post('/posts/',[PostController::class,'store'])->name('admin.posts.store');
     Route::get('/categories',[CategoryController::class,'index'])->name('admin.categories.index');
     Route::get('/categories/{category}',[CategoryController::class,'show'])->name('admin.categories.show');
     Route::get('/groups',[GroupController::class,'index'])->name('admin.groups.index');
