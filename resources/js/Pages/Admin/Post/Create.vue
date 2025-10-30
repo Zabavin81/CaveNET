@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <Link class = "inline-block px-3 py-2 border text-white hover:text-gray-400" :href="route('admin.posts.index')">BACK</Link>
+    <div class = "mt-3 rounded-md bg-teal-600 mb-3 inline-block px-3 py-2 text-white hover:bg-teal-400">
+        <Link class = "" :href="route('admin.posts.index')">BACK</Link>
     </div>
     <div>
         <div class="mb-4">
@@ -9,8 +9,8 @@
         <div class="mb-4">
             <textarea v-model ="post.body" class="border-gray-200 p-4 w-full" type="text" placeholder="body"/>
         </div>
-        <div class="mb-4">
-            <a href="#" @click.prevent="storePost()" class="inline-block px-3 py-2 border text-white hover:text-gray-400">STORE</a>
+        <div class="rounded-md bg-teal-600 mb-3 inline-block px-3 py-2 text-white hover:bg-teal-400">
+            <a href="#" @click.prevent="storePost()" class="">STORE</a>
         </div>
 
     </div>

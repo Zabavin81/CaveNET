@@ -29,7 +29,6 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->foreignId('user_id')->index()->constrained('users');
             $table->softDeletes();
-
             $table->timestamps();
 
 
