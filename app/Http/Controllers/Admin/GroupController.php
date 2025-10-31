@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Group\StoreRequest;
 use App\Http\Resources\Group\GroupResource;
 use App\Models\Group;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -21,4 +23,14 @@ class GroupController extends Controller
         return inertia('Admin/Group/Show', compact('group'));
     }
 
+    public function create(){
+        return inertia('Admin/Group/Create');
+    }
+
+    public function store(StoreRequest $request) {
+        $data = $request->validated();
+        $data['profile_id'] = 1;
+        $group = Group::create($data);
+        return GroupResource::make($group)->resolve();
+    }
 }

@@ -1,5 +1,8 @@
 <template>
     <div>
+        <div class = "mt-3 rounded-md bg-teal-600 mb-3 inline-block px-3 py-2 text-white hover:bg-teal-400">
+            <Link class = "" :href="route('admin.groups.create')">CREATE</Link>
+        </div>
         <table class="divide-gray-200 dark:divide-gray-700 ">
             <thead>
             <tr class="*:font-medium *:text-gray-900 dark:*:text-white ">
