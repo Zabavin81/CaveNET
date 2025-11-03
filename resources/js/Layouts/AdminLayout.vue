@@ -51,7 +51,7 @@
 
                     <div class="flex items-center gap-4">
                         <div class="sm:flex sm:gap-4">
-                            <a class="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700 dark:hover:bg-teal-500" href="#">
+                            <a class="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700 dark:hover:bg-teal-500" href="http://127.0.0.1:8000/login">
                                 Login
                             </a>
 
@@ -76,11 +76,11 @@
             class="fixed left-0 top-16 bottom-0 w-1/6 py-4 bg-gray-800 text-white overflow-y-auto"
         >
             <div class="flex flex-col">
-                <Link :href="route('admin.dashboard')" :class ="[$page.url.startsWith('/admin/dashboard') ? 'bg-teal-600 text-white' : '','p-2 text-teal-600 border-b']">Dashboard</Link>
-                <Link :href="route('admin.posts.index')" :class ="[$page.url.startsWith('/admin/posts') ? 'bg-teal-600 text-white' : '','p-2 text-teal-600 border-b']">Posts</Link>
-                <Link :href="route('admin.categories.index')" :class ="[$page.url.startsWith('/admin/categories') ? 'bg-teal-600 text-white' : '','p-2 text-teal-600 border-b']">Categories</Link>
-                <Link :href="route('admin.profiles.index')" :class ="[$page.url.startsWith('/admin/profiles') ? 'bg-teal-600 text-white' : '','p-2 text-teal-600 border-b']">Profiles</Link>
-                <Link :href="route('admin.groups.index')" :class ="[$page.url.startsWith('/admin/groups') ? 'bg-teal-600 text-white' : '','p-2 text-teal-600 border-b']">Groups</Link>
+                <Link :href="route('admin.dashboard')" :class ="[route().current('admin.dashboard*') ? 'bg-teal-600 text-white' : '','p-2 text-teal-600 border-b']">Dashboard</Link>
+                <Link :href="route('admin.posts.index')" :class ="[route().current('admin.posts.*') ? 'bg-teal-600 text-white' : '','p-2 text-teal-600 border-b']">Posts</Link>
+                <Link :href="route('admin.categories.index')" :class ="[route().current('admin.categories.*') ? 'bg-teal-600 text-white' : '','p-2 text-teal-600 border-b']">Categories</Link>
+                <Link :href="route('admin.profiles.index')" :class ="[route().current('admin.profiles.*') ? 'bg-teal-600 text-white' : '','p-2 text-teal-600 border-b']">Profiles</Link>
+                <Link :href="route('admin.groups.index')" :class ="[route().current('admin.groups.*') ? 'bg-teal-600 text-white' : '','p-2 text-teal-600 border-b']">Groups</Link>
             </div>
         </aside>
 
