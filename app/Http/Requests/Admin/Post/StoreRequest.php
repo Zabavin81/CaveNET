@@ -17,7 +17,17 @@ class StoreRequest extends FormRequest
         return [
             'title' => 'required|string',
             'body' => 'required|string',
+            'category_id' => 'required|integer|exists:categories,id',
+            'profile_id' => 'required|integer|exists:profiles,id',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png',
         ];
+    }
+
+    // до валидации (хорошо)
+    protected function prepareForValidation() {
+        return $this->merge([
+            'profile_id' => auth()->user()->profile->id
+        ]);
     }
 
 }

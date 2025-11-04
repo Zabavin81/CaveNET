@@ -24,6 +24,9 @@
                         {{ post.body }}
                     </p>
                 </div>
+                <div>
+                    <img :src="post.img_url" :alt="post.title" :title="post.title">
+                </div>
             </article>
         </div>
     </div>

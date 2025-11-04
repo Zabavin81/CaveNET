@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
 
 class PostService
 {
@@ -13,5 +14,13 @@ class PostService
     {
         $post->update($data);
         return $post->refresh();
+    }
+
+    public static function storePost(array $data) : Post{
+        if (!empty($data['image'])) {
+            $data['img_path'] = Storage::disk('public')->putFile('images', $data['image']);
+        }
+        unset($data['image']);
+        return Post::create($data);
     }
 }

@@ -27,6 +27,7 @@ return new class extends Migration
             $table->boolean('is_published')->default(false);
             $table->dateTime('published_at')->nullable();
             $table->unsignedInteger('views')->default(0);
+            $table->string('img_path')->nullable();
 
             $table->foreignId('profile_id')->index()->constrained('profiles');
             $table->foreignId('category_id')->index()->constrained('categories');

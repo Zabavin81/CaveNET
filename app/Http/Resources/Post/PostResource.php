@@ -25,6 +25,7 @@ class PostResource extends JsonResource
             'profile_id' => $this->profile_id,
             'category' => $this->category->title,
             'author' => $this->profile->username,
+            'img_url' => $this->img_url
         ];
     }
 

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
@@ -55,6 +56,11 @@ class Post extends Model
     }
     public function tags () {
         return $this->morphMany(Tag::class, 'taggable');
+    }
+
+    public function getImgUrlAttribute() : string
+    {
+        return Storage::disk('public')->url($this->img_path);
     }
 
 }

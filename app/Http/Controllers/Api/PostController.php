@@ -18,12 +18,12 @@ class PostController extends Controller
 
     public function index()
     {
-//title
-//category_id
-//published_at
-//views
-        $post= Post::query();
-        if (isset($data['title'])){
+        //title
+        //category_id
+        //published_at
+        //views
+        $post = Post::query();
+        if (isset($data['title'])) {
             $post->where('title', $data['title']);
         }
         $posts = $post->get();

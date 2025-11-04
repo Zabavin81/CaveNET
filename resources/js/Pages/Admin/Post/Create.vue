@@ -9,9 +9,23 @@
         <div class="mb-4">
             <textarea v-model ="post.body" class="border-gray-200 p-4 w-full" type="text" placeholder="body"/>
         </div>
+        <div class="mb-4">
+            <select class="border-gray-200 p-4 w-full" v-model="post.category_id">
+            <option disabled selected value="null">Выберете категорию</option>
+            <option v-for ="category in categories" :value="category.id">{{category.title}}</option>
+            </select>
+        </div>
+
+
+        <div class="mb-4">
+            <input ref="image_input" @change ="setImage" class="border-gray-200 w-full text-teal-600" type="file" placeholder="title">
+        </div>
+
         <div class="rounded-md bg-teal-600 mb-3 inline-block px-3 py-2 text-white hover:bg-teal-400">
             <a href="#" @click.prevent="storePost()" class="">STORE</a>
         </div>
+
+
 
     </div>
 </template>
@@ -26,18 +40,28 @@ export default {
 
     data() {
         return{
-            post:{}
+            post:{
+                category_id: null
+            }
         }
     },
+
     components: {
         Link
     },
 
     methods: {
         storePost(){
-            axios.post(route('admin.posts.store'),this.post)
+            axios.post(route('admin.posts.store'),this.post,{
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
                 .then((res) => {
-                    this.post = {};
+                    this.post = {
+                        category_id: null
+                    };
+                    this.$refs.image_input.value = null;
                 })
                 .catch((e) => {
 
@@ -45,12 +69,15 @@ export default {
                 .finally(() => {
 
                 })
-        }
-    },
+        },
+        setImage(e){
+            this.post.image = e.target.files[0]
+            }
+        },
     props: {
-        posts: {
+        categories: {
             type: Array,
-            required: false,
+            required: true,
         },
     },
 };
