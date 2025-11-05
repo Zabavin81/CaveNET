@@ -25,7 +25,11 @@ class PostResource extends JsonResource
             'profile_id' => $this->profile_id,
             'category' => $this->category->title,
             'author' => $this->profile->username,
-            'img_url' => $this->img_url
+            //new
+            'images' => $this->whenLoaded('images', fn()=> $this->images->map(fn($image) => [
+                'id' => $image->id,
+                'url' => $image->img_url
+            ])),
         ];
     }
 

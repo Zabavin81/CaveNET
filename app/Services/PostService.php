@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Post;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
 class PostService
@@ -17,10 +18,18 @@ class PostService
     }
 
     public static function storePost(array $data) : Post{
-        if (!empty($data['image'])) {
-            $data['img_path'] = Storage::disk('public')->putFile('images', $data['image']);
+
+        $files = !empty($data['images']) ? Arr::wrap($data['images']) : [];
+        unset($data['images']);
+
+        $post = Post::create($data);
+
+        foreach ($files as $file) {
+            $path = Storage::disk('public')->putFile('images', $file);
+            $post->images()->create([
+                'path' => $path
+            ]);
         }
-        unset($data['image']);
-        return Post::create($data);
+        return $post->load(['category', 'profile','images']);
     }
 }
