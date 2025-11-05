@@ -18,7 +18,7 @@
 
 
         <div class="mb-4">
-            <input ref="image_input" @change ="setImage" class="border-gray-200 w-full text-teal-600" type="file" placeholder="title">
+            <input multiple ref="image_input" accept="image/*" @change ="setImages" class="border-gray-200 w-full text-teal-600" type="file" placeholder="title">
         </div>
 
         <div class="rounded-md bg-teal-600 mb-3 inline-block px-3 py-2 text-white hover:bg-teal-400">
@@ -41,7 +41,8 @@ export default {
     data() {
         return{
             post:{
-                category_id: null
+                category_id: null,
+                images: []
             }
         }
     },
@@ -70,8 +71,8 @@ export default {
 
                 })
         },
-        setImage(e){
-            this.post.image = e.target.files[0]
+        setImages(e){
+            this.post.images = Array.from(e.target.files)
             }
         },
     props: {
