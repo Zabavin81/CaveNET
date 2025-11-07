@@ -4,8 +4,9 @@
         <div>
             <article class="max-w-xl">
                 <div class="flex items-center gap-x-4 text-xs">
+
                     <time class="text-gray-400">
-                        {{ post.published_at }}
+                        {{post.published_at}}
                     </time>
 
                     <a
@@ -18,10 +19,10 @@
 
                 <div class="group relative grow">
                     <h3 class="mt-3 text-lg/6 font-semibold text-white group-hover:text-gray-300">
-                            {{ post.title }}
+                            {{post.title }}
                     </h3>
                     <p class="mt-5 line-clamp-3 text-sm/6 text-gray-400">
-                        {{ post.body }}
+                        {{post.body }}
                     </p>
                 </div>
                 <div v-if="post.images" class="grid grid-cols-3 gap-2">

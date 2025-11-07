@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Post\StoreRequest;
+use App\Http\Requests\Api\Post\UpdateRequest;
 use App\Http\Resources\Category\CategoryResource;
 use App\Http\Resources\Post\PostResource;
 use App\Models\Category;
@@ -24,8 +25,8 @@ class PostController extends Controller
     {
         // Загружаем relations
         $post->load(['images', 'category', 'profile']);
-        $postData = PostResource::make($post)->resolve();
-        return inertia('Admin/Post/Show', ['post' => $postData]);  // Или compact('postData') и переименуй
+        $post = PostResource::make($post)->resolve();
+        return inertia('Admin/Post/Show', compact('post'));
     }
 
     public function create(){
@@ -37,5 +38,18 @@ class PostController extends Controller
         $data = $request->validated();
         $post = PostService::storePost($data);
         return PostResource::make($post)->resolve();
+    }
+
+    public function edit(Post $post) {
+        $post = PostResource::make($post->load(['images','category','profile']))->resolve();
+        $categories = CategoryResource::collection(Category::all())->resolve();
+        return inertia('Admin/Post/Edit',compact('post','categories'));
+    }
+
+    public function update(UpdateRequest $request, Post $post){
+        $post = PostService::updatePost($post, $request->validated());
+        return PostResource::make(
+            $post->load(['images','category','profile','tags'])
+        )->resolve();
     }
 }

@@ -24,6 +24,7 @@ class PostResource extends JsonResource
             'is_published' => $this->is_published,
             'published_at' => $this->published_at,
             'profile_id' => $this->profile_id,
+            'category_id' => $this->category->id,
             'category' => $this->category->title,
             'author' => $this->profile->username,
             //new
