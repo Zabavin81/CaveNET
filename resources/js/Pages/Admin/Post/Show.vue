@@ -24,8 +24,15 @@
                         {{ post.body }}
                     </p>
                 </div>
-                <div>
-                    <img :src="post.img_url" :alt="post.title" :title="post.title">
+                <div v-if="post.images" class="grid grid-cols-3 gap-2">
+                    <img
+                        v-for="img in post.images.data"
+                        :key="img.id"
+                        :src="img.url"
+                        :alt="post.title"
+                        :title="post.title"
+                        class="h-24 w-full object-cover rounded"
+                    />
                 </div>
             </article>
         </div>

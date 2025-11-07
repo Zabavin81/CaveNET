@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index(){
-        $posts = Post::all();
+        $posts = Post::latest()->get();  //  ->paginate(9);
         $posts = PostResource::collection($posts)->resolve();
         return inertia('Client/Post/Index', compact('posts'));
     }

@@ -29,7 +29,7 @@ class ProfileController extends Controller
 
     public function store(StoreRequest $request){
         $data = $request->validated();
-        $data['user_id'] = 2;
+        $data['user_id'] = auth()->user()->profile->id;
         $profile = Profile::create($data);
         return ProfileResource::make($profile)->resolve();
     }

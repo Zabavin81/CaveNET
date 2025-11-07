@@ -15,14 +15,17 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     public function index(){
-        $posts = Post::all()->reverse();
+        $posts = Post::latest()->get();
         $posts = PostResource::collection($posts)->resolve();
         return inertia('Admin/Post/Index',compact('posts'));
     }
 
-    public function show(Post $post){
-        $post = PostResource::make($post)->resolve();
-        return inertia('Admin/Post/Show',compact('post'));
+    public function show(Post $post)
+    {
+        // Загружаем relations
+        $post->load(['images', 'category', 'profile']);
+        $postData = PostResource::make($post)->resolve();
+        return inertia('Admin/Post/Show', ['post' => $postData]);  // Или compact('postData') и переименуй
     }
 
     public function create(){

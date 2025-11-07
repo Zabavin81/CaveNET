@@ -21,7 +21,7 @@ class StoreRequest extends FormRequest
             'profile_id' => 'required|integer|exists:profiles,id',
             //new
             'images' => 'nullable|array',
-            'images.*' => 'image|mimes:jpg,jpeg,png|max:5120',
+            'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
         ];
     }
 

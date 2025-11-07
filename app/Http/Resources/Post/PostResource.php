@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Post;
 
+use App\Http\Resources\Image\ImageResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -26,10 +27,7 @@ class PostResource extends JsonResource
             'category' => $this->category->title,
             'author' => $this->profile->username,
             //new
-            'images' => $this->whenLoaded('images', fn()=> $this->images->map(fn($image) => [
-                'id' => $image->id,
-                'url' => $image->img_url
-            ])),
+            'images' => ImageResource::collection($this->whenLoaded('images')),
         ];
     }
 
