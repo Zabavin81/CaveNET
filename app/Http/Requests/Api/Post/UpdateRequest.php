@@ -29,21 +29,22 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string',
-            'body' => 'required|string',
-            'category_id' => 'required|integer|exists:categories,id',
-            'profile_id' => 'required|integer|exists:profiles,id',
+            'post.title' => 'required|string',
+            'post.body' => 'required|string',
+            'post.category_id' => 'required|integer|exists:categories,id',
+            'post.profile_id' => 'required|integer|exists:profiles,id',
             //new
-            'images' => 'nullable|array',
-            'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
+            'post.images' => 'nullable|array',
+            'post.images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
         ];
     }
 
     protected function prepareForValidation()
     {
         return $this->merge([
-            'profile_id' => auth()->user()->profile->id,
+            'post.profile_id' => auth()->user()->profile->id,
         ]);
+
     }
 
 }

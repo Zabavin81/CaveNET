@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\PostException;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Support\Arr;
@@ -19,36 +20,43 @@ class PostService
         return $post->refresh();
     }
 
-    public static function storePost(array $data) : Post{
+    public static function storePost(array $data) : Post
+    {
+        try {
+            DB::beginTransaction();
+            $files = !empty($data['images']) ? Arr::wrap($data['images']) : [];
+            unset($data['images']);
+            $data['published_at'] = now();
+            $post = Post::create($data);
+            $tags = self::extractHashtags($data['body']);
+            foreach ($tags as $tag) {
+                $post->tags()->firstOrCreate([
+                        'title' => mb_strtolower($tag)
+                    ]
+                );
+            }
 
-        $files = !empty($data['images']) ? Arr::wrap($data['images']) : [];
-        unset($data['images']);
-        $data['published_at'] = now();
-        $post = Post::create($data);
-        $tags = self::extractHashtags($data['body']);
-        foreach ($tags as $tag) {
-            $post->tags()->firstOrCreate([
-                'title'=>mb_strtolower($tag)]
-            );
+            foreach ($files as $file) {
+                $path = Storage::disk('public')->putFile('images', $file);
+                $post->images()->create([
+                    'path' => $path
+                ]);
+            }
+            DB::commit();
+            return $post->load(['category', 'profile', 'images', 'tags']);
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            throw PostException::storeFailed($exception);
         }
-
-        foreach ($files as $file) {
-            $path = Storage::disk('public')->putFile('images', $file);
-            $post->images()->create([
-                'path' => $path
-            ]);
-        }
-        return $post->load(['category', 'profile','images','tags']);
     }
     public static function updatePost(Post $post, array $data): Post
     {
         return DB::transaction(function () use ($post, $data) {
-
+            $data = $data['post'];
             $files = !empty($data['images']) ? Arr::wrap($data['images']) : [];
             unset($data['images']);
 
             $post->update($data);
-
             $body = $data['body'] ?? $post->body;
             $newTags = self::extractHashtags($body);
             $newTags = array_values(array_unique(array_map(fn($t) => mb_strtolower($t, 'UTF-8'), $newTags)));

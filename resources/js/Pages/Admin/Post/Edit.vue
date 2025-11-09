@@ -5,15 +5,15 @@
 
     <div>
         <div class="mb-4">
-            <input v-model="form.title" class="border-gray-200 p-4 w-full" type="text" placeholder="title">
+            <input v-model="entries.post.title" class="border-gray-200 p-4 w-full" type="text" placeholder="title">
         </div>
 
         <div class="mb-4">
-            <textarea v-model="form.body" class="border-gray-200 p-4 w-full" placeholder="body"></textarea>
+            <textarea v-model="entries.post.body" class="border-gray-200 p-4 w-full" placeholder="body"></textarea>
         </div>
 
         <div class="mb-4">
-            <select class="border-gray-200 p-4 w-full" v-model="form.category_id">
+            <select class="border-gray-200 p-4 w-full" v-model="entries.post.category_id">
                 <option :value="null" disabled>Выберите категорию</option>
                 <option v-for="category in categories" :key="category.id" :value="category.id">
                     {{ category.title }}
@@ -50,35 +50,27 @@ export default {
     data() {
 
         return {
-            form: {
-                id: this.post.id,
-                title: this.post.title,
-                body: this.post.body,
-                category_id: this.post.category_id,
-                images: [],
+            entries: {
+                post: this.post,
+                _method: 'PATCH',
             },
         };
     },
 
     methods: {
         setImages(e) {
-            this.form.images = Array.from(e.target.files || []);
+            this.entries.images = e.target.files;
         },
 
-        async updatePost() {
-            const fd = new FormData();
-            fd.append('_method', 'PATCH');
-            fd.append('title', this.form.title);
-            fd.append('body', this.form.body);
-            fd.append('category_id', this.form.category_id);
-
-            this.form.images.forEach((file, i) => {
-                fd.append(`images[${i}]`, file);
-            });
-
-            const url = route('admin.posts.update', this.form.id);
-            await axios.post(url, fd);
-            alert('Updated success');
+        updatePost() {
+            axios.post(route('admin.posts.update', { post: this.post.id }), this.entries, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+                .then((res) => {
+                    alert('EDITED SUCCESSFULLY');
+                });
         },
     },
 };
