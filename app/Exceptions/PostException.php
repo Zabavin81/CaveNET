@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 class PostException extends Exception
 {
 
-    public static function storeFailed() {
+    public static function storeFailed($exception) {
 
         return response([
             'message' => 'post.store_failed',

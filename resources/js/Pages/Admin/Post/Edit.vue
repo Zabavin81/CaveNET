@@ -59,7 +59,7 @@ export default {
 
     methods: {
         setImages(e) {
-            this.entries.images = e.target.files;
+            this.entries.post.images = Array.from(e.target.files)
         },
 
         updatePost() {

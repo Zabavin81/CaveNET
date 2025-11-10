@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\Post;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Arr;
 
 class UpdateRequest extends FormRequest
 {
@@ -36,15 +37,15 @@ class UpdateRequest extends FormRequest
             //new
             'post.images' => 'nullable|array',
             'post.images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
+
         ];
     }
 
     protected function prepareForValidation()
     {
-        return $this->merge([
+        $this->merge([
             'post.profile_id' => auth()->user()->profile->id,
         ]);
-
     }
 
 }
