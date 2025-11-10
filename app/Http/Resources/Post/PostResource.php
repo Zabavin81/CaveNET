@@ -27,7 +27,6 @@ class PostResource extends JsonResource
             'category_id' => $this->category->id,
             'category' => $this->category->title,
             'author' => $this->profile->username,
-            //new
             'images' => ImageResource::collection($this->whenLoaded('images')),
         ];
     }

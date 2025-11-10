@@ -25,6 +25,20 @@
             <input multiple ref="image_input" accept="image/*" @change="setImages"
                    class="border-gray-200 w-full text-teal-600" type="file">
         </div>
+        <div v-if="post.images" class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
+            <div v-for="image in post.images.data" :key="image.id"
+                 class="rounded-lg border border-gray-800 p-2 flex flex-col">
+                <div class="h-40 rounded-md overflow-hidden grid place-items-center">
+                    <img :src="image.url" :alt="post.title" :title="post.title"
+                         class="max-h-full max-w-full object-contain"/>
+                </div>
+                <button
+                    @click.prevent="deleteImage(image)"
+                    class="rounded-md bg-red-600 mb-3 inline-block px-3 py-2 text-white hover:bg-red-400">
+                    Delete
+                </button>
+            </div>
+        </div>
 
         <div class="rounded-md bg-teal-600 mb-3 inline-block px-3 py-2 text-white hover:bg-teal-400">
             <a href="#" @click.prevent="updatePost">UPDATE</a>
@@ -59,7 +73,7 @@ export default {
 
     methods: {
         setImages(e) {
-            this.entries.post.images = Array.from(e.target.files)
+            this.entries.post.images = Array.from(e.target.files);
         },
 
         updatePost() {
@@ -72,6 +86,13 @@ export default {
                     alert('EDITED SUCCESSFULLY');
                 });
         },
+
+        deleteImage(img) {
+            axios.delete(route('admin.images.destroy', { image: img.id }))
+                .then(() => {
+                    this.post.images.data = this.post.images.data.filter(i => i.id !== img.id);
+                });
+        }
     },
 };
 </script>

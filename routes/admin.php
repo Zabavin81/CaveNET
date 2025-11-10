@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\GroupController;
+use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Middleware\IsAdminMiddleware;
@@ -18,6 +19,7 @@ Route::group(['prefix'=> 'admin', 'middleware'=> ['auth',IsAdminMiddleware::clas
     Route::get('/posts/{post}/edit',[PostController::class,'edit'])->name('admin.posts.edit');
     Route::patch('/posts/{post}',[PostController::class,'update'])->name('admin.posts.update');
     Route::get('/posts/{post}',[PostController::class,'show'])->name('admin.posts.show');
+    Route::delete('images/{image}',[ImageController::class,'destroy'])->name('admin.images.destroy');
 
 
     Route::get('/categories',[CategoryController::class,'index'])->name('admin.categories.index');

@@ -25,24 +25,14 @@ class PostService
     {
         try {
             DB::beginTransaction();
-            $files = !empty($data['images']) ? Arr::wrap($data['images']) : [];
-            unset($data['images']);
+            $files = $data['images'] ?? null;
             $data['published_at'] = now();
+            unset($data['images']);
             $post = Post::create($data);
-            $tags = self::extractHashtags($data['body']);
-            foreach ($tags as $tag) {
-                $post->tags()->firstOrCreate([
-                        'title' => mb_strtolower($tag),
-                    ],
-                );
+            if (!empty($files)) {
+                ImageService::storeWithPost($post, $files);
             }
-
-            foreach ($files as $file) {
-                $path = Storage::disk('public')->putFile('images', $file);
-                $post->images()->create([
-                    'path' => $path,
-                ]);
-            }
+            TagService::storeWithPost($post, $data);
             DB::commit();
             return $post->load(['category', 'profile', 'images', 'tags']);
         } catch (\Exception $exception) {
