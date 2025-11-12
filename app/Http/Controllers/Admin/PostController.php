@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Filters\PostFilter;
+use App\Http\Requests\Admin\Post\IndexRequest;
 use App\Http\Requests\Admin\Post\StoreRequest;
 use App\Http\Requests\Api\Post\UpdateRequest;
 use App\Http\Resources\Category\CategoryResource;
@@ -15,8 +17,9 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    public function index(){
-        $posts = Post::latest()->get();
+    public function index(IndexRequest $request){
+        $data = $request->validated();
+        $posts = Post::filter($data)->get();
         $posts = PostResource::collection($posts)->resolve();
         return inertia('Admin/Post/Index',compact('posts'));
     }

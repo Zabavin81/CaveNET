@@ -24,14 +24,9 @@ class TagService
 
     public static function storeWithPost(Post $post, array $data) : void
     {
-        $body = $data['body'] ?? $post->body;
+        $body = $data['body'];
         $newTags = self::extractHashtags($body);
-        $newTags = array_values(
-            array_unique(
-                array_map(fn($t) => mb_strtolower($t, 'UTF-8'), $newTags),
-            ),
-        );
-
+        $newTags = array_values(array_unique(array_map('mb_strtolower', $newTags)));
         if (!empty($newTags)) {
             $post->tags()->whereNotIn('title', $newTags)->delete();
         } else {

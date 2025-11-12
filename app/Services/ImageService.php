@@ -16,8 +16,7 @@ class ImageService
 
     }
 
-    public static function storeWithPost(Post $post, array $images){
-        $files = Arr::wrap($images);
+    public static function storeWithPost(Post $post, array $files){
         foreach ($files as $file) {
             $path = Storage::disk('public')->putFile('images', $file);
             $post->images()->create(['path' => $path]);
