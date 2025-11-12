@@ -1,9 +1,16 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Resources\Models;
 
 use App\Http\Filters\PostFilter;
-use App\Models\Traits\HasFilter;
+use App\Http\Resources\Models\Category;
+use App\Http\Resources\Models\Comment;
+use App\Http\Resources\Models\File;
+use App\Http\Resources\Models\Image;
+use App\Http\Resources\Models\Profile;
+use App\Http\Resources\Models\Tag;
+use App\Http\Resources\Models\View;
+use App\Http\Resources\Models\Traits\HasFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

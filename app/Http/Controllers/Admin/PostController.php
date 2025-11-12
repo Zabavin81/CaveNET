@@ -3,30 +3,32 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Filters\PostFilter;
 use App\Http\Requests\Admin\Post\IndexRequest;
 use App\Http\Requests\Admin\Post\StoreRequest;
 use App\Http\Requests\Api\Post\UpdateRequest;
 use App\Http\Resources\Category\CategoryResource;
 use App\Http\Resources\Post\PostResource;
-use App\Models\Category;
-use App\Models\Post;
+use App\Http\Resources\Models\Category;
+use App\Http\Resources\Models\Post;
 use App\Services\PostService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Request;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class PostController extends Controller
 {
     public function index(IndexRequest $request){
         $data = $request->validated();
-        $posts = Post::filter($data)->get();
+        $posts = Post::filter($data)->latest()->get();
         $posts = PostResource::collection($posts)->resolve();
+
+        if(Request::wantsJson()){
+            return $posts;
+        }
         return inertia('Admin/Post/Index',compact('posts'));
     }
 
     public function show(Post $post)
     {
-        // Загружаем relations
         $post->load(['images', 'category', 'profile']);
         $post = PostResource::make($post)->resolve();
         return inertia('Admin/Post/Show', compact('post'));
@@ -54,5 +56,13 @@ class PostController extends Controller
         return PostResource::make(
             $post->load(['images','category','profile','tags'])
         )->resolve();
+    }
+
+    public function destroy(Post $post) {
+        $post->delete();
+        return response()->json(
+            ['message' => 'Post deleted'],
+            ResponseAlias::HTTP_OK
+        );
     }
 }

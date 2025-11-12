@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Traits;
+namespace App\Http\Resources\Models\Traits;
 
 use App\Http\Filters\PostFilter;
 use Illuminate\Database\Eloquent\Builder;

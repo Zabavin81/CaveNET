@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
-use App\Models\Post;
-use App\Models\Profile;
-use App\Models\User;
+use App\Http\Resources\Models\Category;
+use App\Http\Resources\Models\Post;
+use App\Http\Resources\Models\Profile;
+use App\Http\Resources\Models\User;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Database\Factories\PostFactory;

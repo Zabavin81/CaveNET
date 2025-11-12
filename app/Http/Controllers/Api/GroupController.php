@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Group\StoreGroupRequest;
 use App\Http\Requests\Api\Group\UpdateGroupRequest;
-use App\Models\Group;
+use App\Http\Resources\Models\Group;
 use App\Services\GroupService;
 use Symfony\Component\HttpFoundation\Response;
 

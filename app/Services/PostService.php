@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Exceptions\PostException;
-use App\Models\Post;
-use App\Models\Tag;
+use App\Http\Resources\Models\Post;
+use App\Http\Resources\Models\Tag;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;

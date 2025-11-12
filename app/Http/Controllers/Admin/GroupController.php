@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Group\StoreRequest;
 use App\Http\Resources\Group\GroupResource;
-use App\Models\Group;
-use App\Models\Post;
+use App\Http\Resources\Models\Group;
+use App\Http\Resources\Models\Post;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller

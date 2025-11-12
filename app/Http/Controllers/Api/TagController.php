@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Tag\StoreTagRequest;
 use App\Http\Requests\Api\Tag\UpdateTagRequest;
-use App\Models\Tag;
+use App\Http\Resources\Models\Tag;
 use App\Services\TagService;
 use Symfony\Component\HttpFoundation\Response;
 

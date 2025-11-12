@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Theme\StoreThemeRequest;
 use App\Http\Requests\Api\Theme\UpdateThemeRequest;
-use App\Models\Theme;
+use App\Http\Resources\Models\Theme;
 use App\Services\ThemeService;
 use Symfony\Component\HttpFoundation\Response;
 

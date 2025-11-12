@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Post;
+use App\Http\Resources\Models\Post;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 

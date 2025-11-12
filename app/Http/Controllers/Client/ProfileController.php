@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Profile\ProfileResource;
-use App\Models\Profile;
+use App\Http\Resources\Models\Profile;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller

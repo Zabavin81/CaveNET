@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Profile\StoreRequest;
 use App\Http\Resources\Post\PostResource;
 use App\Http\Resources\Profile\ProfileResource;
-use App\Models\Profile;
+use App\Http\Resources\Models\Profile;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller

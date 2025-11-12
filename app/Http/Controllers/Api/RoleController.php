@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Role\StoreRoleRequest;
 use App\Http\Requests\Api\Role\UpdateRoleRequest;
-use App\Models\Role;
+use App\Http\Resources\Models\Role;
 use App\Services\RoleService;
 use Symfony\Component\HttpFoundation\Response;
 

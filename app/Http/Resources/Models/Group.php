@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Resources\Models;
 
+use App\Http\Resources\Models\Profile;
+use App\Http\Resources\Models\Tag;
+use App\Http\Resources\Models\Theme;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

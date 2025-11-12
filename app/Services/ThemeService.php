@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Theme;
+use App\Http\Resources\Models\Theme;
 
 class ThemeService
 {

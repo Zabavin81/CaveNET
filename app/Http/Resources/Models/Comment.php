@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Resources\Models;
 
+use App\Http\Resources\Models\Post;
+use App\Http\Resources\Models\Profile;
+use App\Http\Resources\Models\View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;

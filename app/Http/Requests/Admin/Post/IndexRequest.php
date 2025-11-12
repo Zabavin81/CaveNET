@@ -15,13 +15,13 @@ class IndexRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => $this->title,
-            'body' => $this->body,
-            'likes' => $this->likes,
-            'published_at_from' => $this->published_at,
-            'published_at_to' => $this->published_at,
-            'views_from' => $this->views,
-            'views_to' => $this->views,
+            'title' => 'nullable|string',
+            'body' => 'nullable|string',
+            'likes' => 'nullable|integer',
+            'published_at_from' => 'nullable|date_format:Y-m-d',
+            'published_at_to' => 'nullable|date_format:Y-m-d',
+            'views_from' => 'nullable|integer',
+            'views_to' => 'nullable|integer',
         ];
     }
 

@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Resources\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Http\Resources\Models\Profile;
+use App\Http\Resources\Models\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;

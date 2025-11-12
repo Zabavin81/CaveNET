@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Comment;
+use App\Http\Resources\Models\Comment;
 
 class CommentService
 {

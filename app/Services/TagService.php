@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\Post;
-use App\Models\Tag;
+use App\Http\Resources\Models\Post;
+use App\Http\Resources\Models\Tag;
 
 class TagService
 {

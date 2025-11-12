@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Message;
+use App\Http\Resources\Models\Message;
 
 class MessageService
 {

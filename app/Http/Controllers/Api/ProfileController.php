@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Profile\StoreProfileRequest;
 use App\Http\Requests\Api\Profile\UpdateProfileRequest;
-use App\Models\Profile;
+use App\Http\Resources\Models\Profile;
 use App\Services\ProfileService;
 use Symfony\Component\HttpFoundation\Response;
 
