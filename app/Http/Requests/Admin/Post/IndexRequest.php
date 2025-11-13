@@ -22,6 +22,7 @@ class IndexRequest extends FormRequest
             'published_at_to' => 'nullable|date_format:Y-m-d',
             'views_from' => 'nullable|integer',
             'views_to' => 'nullable|integer',
+            'category_id' => 'nullable|exists:categories,id',
         ];
     }
 

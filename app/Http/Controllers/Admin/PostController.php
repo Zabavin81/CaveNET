@@ -20,11 +20,12 @@ class PostController extends Controller
         $data = $request->validated();
         $posts = Post::filter($data)->latest()->get();
         $posts = PostResource::collection($posts)->resolve();
+        $categories = CategoryResource::collection(Category::all())->resolve();
 
         if(Request::wantsJson()){
             return $posts;
         }
-        return inertia('Admin/Post/Index',compact('posts'));
+        return inertia('Admin/Post/Index',compact('posts','categories'));
     }
 
     public function show(Post $post)

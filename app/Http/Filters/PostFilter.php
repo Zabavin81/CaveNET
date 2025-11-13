@@ -17,6 +17,7 @@ class PostFilter extends AbstractFilter
             'published_at_to',
             'views_from',
             'views_to',
+            'category_id',
         ];
 
 
@@ -48,6 +49,10 @@ class PostFilter extends AbstractFilter
     protected function viewsTo(Builder $builder, $value) : void
     {
         $builder->where('views', '<=', $value);
+    }
+
+    protected function categoryId(Builder $builder, $value) : void{
+        $builder->where('category_id', $value);
     }
 
 }
