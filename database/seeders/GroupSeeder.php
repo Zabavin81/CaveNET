@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Http\Resources\Models\Group;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Group;
 use Illuminate\Database\Seeder;
 
 class GroupSeeder extends Seeder

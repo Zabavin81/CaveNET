@@ -2,13 +2,11 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Resources\Models\Comment;
-use App\Http\Resources\Models\Group;
-use App\Http\Resources\Models\Image;
-use App\Http\Resources\Models\Post;
-use App\Http\Resources\Models\Profile;
-use App\Http\Resources\Models\Tag;
-use App\Http\Resources\Models\View;
+use App\Models\Comment;
+use App\Models\Group;
+use App\Models\Post;
+use App\Models\Profile;
+use App\Models\Tag;
 use Illuminate\Console\Command;
 
 class GoCommand extends Command

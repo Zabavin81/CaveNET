@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Resources\Models;
+namespace App\Models;
 
-use App\Http\Resources\Models\Post;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

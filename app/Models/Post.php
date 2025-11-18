@@ -1,22 +1,12 @@
 <?php
 
-namespace App\Http\Resources\Models;
+namespace App\Models;
 
-use App\Http\Filters\PostFilter;
-use App\Http\Resources\Models\Category;
-use App\Http\Resources\Models\Comment;
-use App\Http\Resources\Models\File;
-use App\Http\Resources\Models\Image;
-use App\Http\Resources\Models\Profile;
-use App\Http\Resources\Models\Tag;
-use App\Http\Resources\Models\View;
-use App\Http\Resources\Models\Traits\HasFilter;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Traits\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 

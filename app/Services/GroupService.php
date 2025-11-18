@@ -3,7 +3,7 @@
 namespace App\Services;
 
 
-use App\Http\Resources\Models\Group;
+use App\Models\Group;
 
 class GroupService
 {

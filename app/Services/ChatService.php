@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Http\Resources\Models\Chat;
+use App\Models\Chat;
 
 class ChatService
 {

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Theme;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Str;
-use App\Http\Resources\Models\Theme;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class ThemeController extends Controller

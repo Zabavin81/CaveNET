@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Resources\Models\Observers;
+namespace App\Models\Observers;
 
-use App\Http\Resources\Models\Log;
-use App\Http\Resources\Models\Post;
+use App\Models\Log;
+use App\Models\Post;
 
 class PostObserver
 {

@@ -6,11 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Post\StoreRequest;
 use App\Http\Requests\Api\Post\UpdateRequest;
 use App\Http\Resources\Post\PostResource;
-use App\Http\Resources\Models\Post;
+use App\Models\Post;
 use App\Services\PostService;
-use Illuminate\Http\Client\ResponseSequence;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class PostController extends Controller

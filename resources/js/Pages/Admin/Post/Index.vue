@@ -5,7 +5,7 @@
         </div>
         <!-- БЫЛО: <div class="mb-4 flex"> -->
         <div class="mb-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-end">
-            <input v-model="filter.title" class="border border-gray-200 p-2 w-full" type="text" placeholder="title">
+            <input v-model="filter.title" @blur="clearIfEmpty('title')" class="border border-gray-200 p-2 w-full" type="text" placeholder="title">
             <input v-model="filter.body" class="border border-gray-200 p-2 w-full" type="text" placeholder="body">
 
             <select class="border border-gray-200 p-2 w-full" v-model.number="filter.category_id">
@@ -129,6 +129,14 @@ export default {
             this.filter = {
                 category_id: null,
             };
+        },
+
+        clearIfEmpty(field) {
+            const value = this.filter[field];
+
+            if (value === '' || value === null || value === undefined) {
+                delete this.filter[field];
+            }
         },
     },
 

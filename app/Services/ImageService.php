@@ -2,8 +2,7 @@
 
 namespace App\Services;
 
-use App\Http\Resources\Models\Post;
-use Illuminate\Support\Arr;
+use App\Models\Post;
 use Illuminate\Support\Facades\Storage;
 
 class ImageService

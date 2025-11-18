@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Resources\Models\Traits;
+namespace App\Models\Traits;
 
-use App\Http\Filters\PostFilter;
 use Illuminate\Database\Eloquent\Builder;
 
 trait HasFilter {

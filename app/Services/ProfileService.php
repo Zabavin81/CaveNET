@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Http\Resources\Models\Profile;
+use App\Models\Profile;
 
 class ProfileService
 {

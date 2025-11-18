@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Models\Image;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use App\Models\Image;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 

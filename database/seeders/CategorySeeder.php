@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Http\Resources\Models\Category;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder

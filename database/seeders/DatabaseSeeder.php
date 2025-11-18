@@ -2,15 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Http\Resources\Models\Category;
-use App\Http\Resources\Models\Post;
-use App\Http\Resources\Models\Profile;
-use App\Http\Resources\Models\User;
-
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Database\Factories\PostFactory;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,12 +17,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $role = Role::firstOrCreate(
+            ['title' => 'admin'],
+        );
         $user = User::firstOrCreate(
             ["email" => 'user@user.com'],
             ["name" => "user",
             "password" => Hash::make('123123123')]
-            //"role" =>  "user"]
         );
+        $user->roles()->attach($role->id);
         $user->profile()->updateOrCreate(
             ['username' =>"user"],
             ['name' =>"user user",
@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             'country' =>"Russia",
             'date_of_birth' => fake()->date("Y-m-d")
         ]);
+
         $this->call([
             CategorySeeder::class,
             PostSeeder::class,

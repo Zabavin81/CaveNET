@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Follower\StoreFollowerRequest;
 use App\Http\Requests\Api\Follower\UpdateFollowerRequest;
-use App\Http\Resources\Models\Follower;
+use App\Models\Follower;
 use Symfony\Component\HttpFoundation\Response;
 
 class FollowerController extends Controller

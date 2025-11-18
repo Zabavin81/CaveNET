@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\Post\PostResource;
-use App\Http\Resources\Models\Post;
+use App\Models\Post;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 

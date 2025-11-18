@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Http\Resources\Models\Post;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Post;
 use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder

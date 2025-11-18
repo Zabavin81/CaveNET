@@ -2,11 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\Models\follower;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Str;
-
 class FollowerController extends Controller
 {
 //    /**

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Like\StoreLikeRequest;
 use App\Http\Requests\Api\Like\UpdateLikeRequest;
-use App\Http\Resources\Models\Like;
+use App\Models\Like;
 use Symfony\Component\HttpFoundation\Response;
 
 class LikeController extends Controller

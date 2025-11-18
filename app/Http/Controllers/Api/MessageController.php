@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Message\StoreMessageRequest;
 use App\Http\Requests\Api\Message\UpdateMessageRequest;
-use App\Http\Resources\Models\Message;
+use App\Models\Message;
 use App\Services\MessageService;
 use Symfony\Component\HttpFoundation\Response;
 

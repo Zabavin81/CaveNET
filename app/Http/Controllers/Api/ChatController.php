@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Chat\StoreChatRequest;
 use App\Http\Requests\Api\Chat\UpdateChatRequest;
 use App\Http\Resources\Chat\ChatResource;
-use App\Http\Resources\Models\Chat;
+use App\Models\Chat;
 use App\Services\ChatService;
 use Illuminate\Http\Response;
 
