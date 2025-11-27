@@ -23,7 +23,17 @@ class IndexRequest extends FormRequest
             'views_from' => 'nullable|integer',
             'views_to' => 'nullable|integer',
             'category_id' => 'nullable|exists:categories,id',
+            'page' => 'required|integer',
+            'per_page' => 'required|integer',
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        return $this->merge([
+            'page' => $this->page ?? 1,
+            'per_page' => $this->per_page ?? 5,
+        ]);
     }
 
 }

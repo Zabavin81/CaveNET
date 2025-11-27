@@ -3,26 +3,33 @@
         <div class="mt-3 rounded-md bg-teal-600 mb-3 inline-block px-3 py-2 text-white hover:bg-teal-400">
             <Link class="" :href="route('admin.posts.create')">CREATE</Link>
         </div>
-        <!-- БЫЛО: <div class="mb-4 flex"> -->
+
         <div class="mb-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-end">
             <input v-model="filter.title" @blur="clearIfEmpty('title')" class="border border-gray-200 p-2 w-full" type="text" placeholder="title">
-            <input v-model="filter.body" class="border border-gray-200 p-2 w-full" type="text" placeholder="body">
+            <input v-model="filter.body" @blur="clearIfEmpty('body')" class="border border-gray-200 p-2 w-full" type="text" placeholder="body">
 
             <select class="border border-gray-200 p-2 w-full" v-model.number="filter.category_id">
                 <option :value="null" disabled>choose category</option>
                 <option v-for="c in categories" :key="c.id" :value="c.id">{{ c.title }}</option>
             </select>
 
-            <input v-model="filter.published_at_from" class="border border-gray-200 p-2 w-full" type="date"
+            <input v-model="filter.published_at_from" @blur="clearIfEmpty('published_at_from')" class="border border-gray-200 p-2 w-full" type="date"
                    placeholder="date from">
-            <input v-model="filter.published_at_to" class="border border-gray-200 p-2 w-full" type="date"
+            <input v-model="filter.published_at_to" @blur="clearIfEmpty('published_at_to')" class="border border-gray-200 p-2 w-full" type="date"
                    placeholder="date to">
-            <input v-model.number="filter.views_from" class="border border-gray-200 p-2 w-full" type="number"
+            <input v-model.number="filter.views_from" @blur="clearIfEmpty('views_from')" class="border border-gray-200 p-2 w-full" type="number"
                    placeholder="views from">
-            <input v-model.number="filter.views_to" class="border border-gray-200 p-2 w-full" type="number"
+            <input v-model.number="filter.views_to" @blur="clearIfEmpty('views_to')" class="border border-gray-200 p-2 w-full" type="number"
                    placeholder="views to">
             <div class="flex" v-if="Object.keys(filter).length > 1 || filter.category_id != null">
                 <a href="#" class="underline-offset-4 underline text-white" @click.prevent="clearFilters">clear filters</a>
+            </div>
+        </div>
+        <div>
+            <div>
+                <a class="inline-block mr-2 py-1 px-2 border-gray-200 bg-white text-gray-600" v-for=" link in postsData.meta.links"
+                   @click = "filter.page = link.label"
+                   href ="#" v-html = "link.label"></a>
             </div>
         </div>
         <div class="overflow-x-auto">
@@ -37,7 +44,7 @@
                 </thead>
 
                 <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                <tr v-for="post in postsData" :key="post.id"
+                <tr v-for="post in postsData.data" :key="post.id"
                     class="*:text-gray-900 *:first:font-medium dark:*:text-white">
                     <td class="px-3 py-2 whitespace-nowrap">{{ post.id }}</td>
                     <td class="px-3 py-2 whitespace-nowrap">{{ post.title }}</td>
@@ -132,9 +139,7 @@ export default {
         },
 
         clearIfEmpty(field) {
-            const value = this.filter[field];
-
-            if (value === '' || value === null || value === undefined) {
+            if (this.filter[field] === '') {
                 delete this.filter[field];
             }
         },

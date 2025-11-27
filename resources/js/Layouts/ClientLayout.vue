@@ -71,21 +71,18 @@
             </div>
         </header>
     </section>
-    <section class="flex">
+    <section class="min-h-screen">
         <aside
-            class="w-1/6 py-4 bg-gray-900 text-white"
+            class="fixed left-0 top-16 bottom-0 w-1/6 py-4 bg-gray-900 text-white overflow-y-auto"
         >
-            <div class="flex flex-col gap-2 ml-2">
-                <Link :href="route('admin.dashboard')" :class ="[route().current('admin.dashboard*') ? 'bg-teal-600 text-white' : '','p-2 text-teal-600  rounded-full']">Dashboard</Link>
-                <Link :href="route('admin.posts.index')" :class ="[route().current('admin.posts.*') ? 'bg-teal-600 text-white' : '','p-2 text-teal-600 rounded-full']">Posts</Link>
-                <Link :href="route('admin.categories.index')" :class ="[route().current('admin.categories.*') ? 'bg-teal-600 text-white' : '','p-2 text-teal-600 rounded-full']">Categories</Link>
-                <Link :href="route('admin.profiles.index')" :class ="[route().current('admin.profiles.*') ? 'bg-teal-600 text-white' : '','p-2 text-teal-600 rounded-full']">Profiles</Link>
-                <Link :href="route('admin.groups.index')" :class ="[route().current('admin.groups.*') ? 'bg-teal-600 text-white' : '','p-2 text-teal-600 rounded-full']">Groups</Link>
+            <div class="flex flex-col">
+                <Link :href="route('client.posts.feed')" :class ="[route().current('admin.dashboard*') ? 'bg-teal-600 text-white' : '','p-2 text-teal-600 border-b']">Dashboard</Link>
             </div>
         </aside>
-    <article class="w-5/6 p-16">
-        <slot />
-    </article>
+
+        <article class="w-5/6 ml-[16.6667%] pt-16 p-4">
+            <slot />
+        </article>
     </section>
 
     <section>
@@ -99,7 +96,7 @@ import { Link } from '@inertiajs/vue3'
 import NavLink from '@/Components/NavLink.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 export default {
-    name: 'AdminLayout',
+    name: 'ClientLayout',
     components: { DropdownLink, NavLink,Link},
 };
 </script>
