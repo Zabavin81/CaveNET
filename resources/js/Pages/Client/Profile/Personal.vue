@@ -25,17 +25,17 @@
                             </a>
                         </div>
 
-                            <Link :href="route('client.posts.show',post.id)">
-                        <div class="group relative grow">
-                            <h3 class="mt-3 text-lg/6 font-semibold text-white group-hover:text-gray-300">
+                        <Link :href="route('client.posts.show',post.id)">
+                            <div class="group relative grow">
+                                <h3 class="mt-3 text-lg/6 font-semibold text-white group-hover:text-gray-300">
                                     <span class="absolute inset-0"></span>
                                     {{ post.title }}
-                            </h3>
-                            <p class="mt-5 line-clamp-3 text-sm/6 text-gray-400">
-                                {{ post.body }}
-                            </p>
-                        </div>
-                            </Link>
+                                </h3>
+                                <p class="mt-5 line-clamp-3 text-sm/6 text-gray-400">
+                                    {{ post.body }}
+                                </p>
+                            </div>
+                        </Link>
 
                         <div class="relative mt-8 flex items-center gap-x-4 justify-self-end">
                             <img
@@ -75,8 +75,8 @@ import ClientLayout from '@/Layouts/ClientLayout.vue';
 import { Link } from '@inertiajs/vue3';
 
 export default {
-    name: 'Index',
-    components: {Link},
+    name: 'Personal',
+    components: { Link },
     layout: ClientLayout,
     props: {
         posts: {

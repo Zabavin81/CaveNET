@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Profile extends Model
@@ -28,5 +29,10 @@ class Profile extends Model
 
     public function tags () {
         return $this->morphMany(Tag::class, 'taggable');
+    }
+
+    public function posts() : HasMany
+    {
+        return $this->hasMany(Post::class);
     }
 }

@@ -13,4 +13,14 @@ class PostController extends Controller
         $posts = PostResource::collection($posts)->resolve();
         return inertia('Client/Post/Index', compact('posts'));
     }
+
+    public function show(Post $post){
+        $post->load(['images', 'category', 'profile']);
+        $post = PostResource::make($post)->resolve();
+        return inertia('Client/Post/Show', compact('post'));
+    }
+
+    public function toggleLike(Post $post) {
+        $res = auth()->user()->profile->likedPosts()->toggle($post->id);
+    }
 }
