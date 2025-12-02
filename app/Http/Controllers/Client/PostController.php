@@ -21,6 +21,6 @@ class PostController extends Controller
     }
 
     public function toggleLike(Post $post) {
-        $res = auth()->user()->profile->likedPosts()->toggle($post->id);
+        auth()->user()->profile->likedPosts()->toggle($post->id);
     }
 }

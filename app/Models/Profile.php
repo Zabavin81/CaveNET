@@ -20,7 +20,7 @@ class Profile extends Model
 
     public function likedPosts()
     {
-        return $this->morphedByMany(Post::class, 'likable');
+        return $this->morphedByMany(Post::class, 'likeable');
     }
 
     public function views(){

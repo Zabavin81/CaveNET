@@ -35,10 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profiles/personal',[ProfileController::class,'personal'])->name('client.profiles.personal');
     Route::get('/feed',[FeedController::class,'index'])->name('client.posts.feed');
     Route::get('/posts/{post}',[PostController::class,'show'])->name('client.posts.show');
     Route::post('/posts/{post}/likes',[PostController::class,'toggleLike'])->name('client.posts.likes.toggle');
-    Route::get('/profiles/personal',[ProfileController::class,'personal'])->name('client.profiles.personal');
 });
 
 require __DIR__.'/auth.php';
