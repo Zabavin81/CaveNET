@@ -28,6 +28,8 @@ class PostResource extends JsonResource
             'category' => $this->category->title,
             'author' => $this->profile->username,
             'images' => ImageResource::collection($this->whenLoaded('images')),
+            'is_liked' => $this->is_liked,
+            'liked_by_profiles_count' =>$this->liked_by_profiles_count,
         ];
     }
 

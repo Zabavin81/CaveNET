@@ -22,5 +22,6 @@ class PostController extends Controller
 
     public function toggleLike(Post $post) {
         auth()->user()->profile->likedPosts()->toggle($post->id);
+        return PostResource::make($post->fresh())->resolve();
     }
 }

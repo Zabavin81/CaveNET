@@ -16,6 +16,8 @@ class Post extends Model
     use HasFactory;
     use HasFilter;
 
+    protected $withCount =['likedByProfiles'];
+
 
     protected $guarded = [];
 
@@ -44,7 +46,7 @@ class Post extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
 
-    public function likes(){
+    public function likedByProfiles(){
         return $this->morphToMany(Profile::class, 'likeable');
     }
 
@@ -62,6 +64,10 @@ class Post extends Model
     public function getImgUrlAttribute() : string
     {
         return Storage::disk('public')->url($this->img_path);
+    }
+
+    public function getIsLikedAttribute() : bool{
+        return $this->likedByProfiles->contains(auth()->user()->profile);
     }
 
 }
